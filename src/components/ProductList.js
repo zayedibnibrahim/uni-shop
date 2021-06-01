@@ -9,7 +9,7 @@ const ProductList = () => {
 
     useEffect(() => {
         dispatchProduct(setProducts());
-    }, [dispatchProduct])
+    }, [])
 
     return (
         <div className="container" style={{ backgroundColor: "#f1f2f6", borderRadius: "10px", marginTop: "20px", padding: "16px" }}>

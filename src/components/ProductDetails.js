@@ -2,13 +2,14 @@ import axios from 'axios';
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { selectedProduct } from '../redux/actions/productActions';
+import { addToCart, selectedProduct } from '../redux/actions/productActions';
 
 const ProductDetails = () => {
     const { productId } = useParams();
     const productDtls = useSelector((state) => state.productDetails)
     const { title, price, category, description, image } = productDtls
-    const dispatchDetails = useDispatch()
+    const dispatchDetails = useDispatch();
+    const addToCartDispatch = useDispatch();
     const fetchProductDetails = async () => {
         try {
             const res = await axios.get(`https://fakestoreapi.com/products/${productId}`)
@@ -33,7 +34,7 @@ const ProductDetails = () => {
                         <p>Category: {category}</p>
                         <p>Description: </p><br />
                         <p>{description}</p>
-
+                        <button onClick={() => addToCartDispatch(addToCart(productDtls))} className="btn" style={{ backgroundColor: "#F79F1F", color: "#fff" }}>Add To Cart +</button>
                     </div>
                 </div>
             }
